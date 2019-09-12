@@ -78,8 +78,8 @@ export default {
         // 发送网络请求
         this.$axios
           .post("/api/posts/sms_send", {
-            tpl_id: "136729",
-            key: "795be723dd9e88c3ea98e2b6713ab795",
+            tpl_id: "185334",
+            key: "89131967ceaedd1ed744331827b99d7a",
             phone: this.phone
           })
           .then(res => {
