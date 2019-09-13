@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
   mode: 'history',
@@ -11,25 +11,35 @@ const router = new Router({
       path: '/',
       // name: 'index',
       component: () => import('./views/index.vue'),
-      children:[
+      children: [
         {
           path: '',
           redirect: '/home'
         },
         {
           path: '/home',
-          home: 'home',
-          component: ()=> import('./views/Home.vue')
+          name: 'home',
+          component: () => import('./views/Home.vue')
         },
         {
           path: '/order',
-          home: 'order',
-          component: ()=> import('./views/Order.vue')
+          name: 'order',
+          component: () => import('./views/Order.vue')
         },
         {
           path: '/me',
-          home: 'me',
-          component: ()=> import('./views/Me.vue')
+          name: 'me',
+          component: () => import('./views/Me.vue')
+        },
+        {
+          path: '/address',
+          name: 'address',
+          component: () => import('./views/Address.vue')
+        },
+        {
+          path: '/city',
+          name: 'city',
+          component: () => import('./views/City.vue')
         }
       ]
     },
@@ -37,22 +47,18 @@ const router = new Router({
       path: '/login',
       name: 'login',
       component: () => import('./views/Login.vue')
-    },
-    {
-      path: '/'
     }
   ]
-})
-//路由守卫
+});
+// 路由守卫
 router.beforeEach((to, from, next) => {
   const isLogin = localStorage.ele_login ? true : false;
   if (to.path == '/login') {
-    next()
+    next();
   } else {
-    //判断是否登录状态
-    isLogin ? next() : next('/login')
+    // 是否在登录状态下
+    isLogin ? next() : next('/login');
   }
-})
-
+});
 
 export default router;
