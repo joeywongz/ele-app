@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <router-view/>
+    <keep-alive>
+      <router-view/>
+    </keep-alive>
   </div>
 </template>
 
@@ -15,7 +17,7 @@ export default {
       const self = this;
       AMap.plugin("AMap.Geolocation", function() {
         var geolocation = new AMap.Geolocation({
-          // 是否使用高精度定位，默认：true 
+          // 是否使用高精度定位，默认：true
           enableHighAccuracy: true,
           // 设置定位超时时间，默认：无穷大
           timeout: 10000
@@ -46,7 +48,7 @@ export default {
         citySearch.getLocalCity(function(status, result) {
           if (status === "complete" && result.info === "OK") {
             // 查询成功，result即为当前所在城市信息
-            console.log(result);
+            // console.log(result);
             AMap.plugin("AMap.Geocoder", function() {
               var geocoder = new AMap.Geocoder({
                 // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
